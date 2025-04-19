@@ -96,6 +96,13 @@ const calcDisplaySummary = function (movements) {
     .reduce((acc, curr) => acc + curr, 0);
 
   labelSumOut.textContent = `${Math.abs(out)}eur`;
+
+  const interest = movements
+    .filter(mov => mov > 0)
+    .map(depost => (depost * 1.2) / 100)
+    .filter(int => int >= 1)
+    .reduce((acc, int) => acc + int, 0);
+  labelSumInterest.textContent = `${interest}e`;
 };
 calcDisplaySummary(account1.movements);
 
