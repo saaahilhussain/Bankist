@@ -117,36 +117,6 @@ const createUsernames = function (accs) {
 };
 createUsernames(accounts);
 
-let currentAccount;
-
-//add event handlers
-btnLogin.addEventListener('click', function (e) {
-  e.preventDefault();
-  //removed default reload behaviour on submit
-
-  //store current account as per username (in order to later compare with pin)
-  currentAccount = accounts.find(
-    acc => acc.username === inputLoginUsername.value
-  );
-
-  if (currentAccount?.pin === Number(inputLoginPin.value)) {
-    console.log(currentAccount);
-    containerApp.style.opacity = 100;
-    labelWelcome.textContent = `Welcome, ${currentAccount.owner.split(' ')[0]}`;
-    //clear input fields
-    inputLoginUsername.value = inputLoginPin.value = '';
-    inputLoginPin.blur();
-
-    //display movements
-    displayMovements(currentAccount.movements);
-
-    //display balance
-    calcDisplayBalance(currentAccount.movements);
-
-    //display summary
-    calcDisplaySummary(currentAccount.movements);
-  }
-});
 
 // console.log(accounts);
 
