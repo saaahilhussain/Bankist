@@ -117,10 +117,30 @@ const createUsernames = function (accs) {
 };
 createUsernames(accounts);
 
+//Implementing login
+let currentAccount; //since this variable will be having more use-cases
 
-// console.log(accounts);
+btnLogin.addEventListener('click', function (e) {
+  e.preventDefault();
+  console.log('log in btn pressed');
 
-// console.log(username);
+  currentAccount = accounts.find(
+    acc => acc.username === inputLoginUsername.value
+  );
+  console.log(currentAccount);
+  if (currentAccount?.pin === Number(inputLoginPin.value)) {
+    console.log('id-pin matched');
+    //Display Welcome Message & UI
+    labelWelcome.textContent = `Welcome, ${currentAccount.owner.split(' ')[0]}`;
+
+    containerApp.style.opacity = 100;
+  }
+  //Display Movements
+
+  //Display Balance
+
+  //Display Summary
+});
 
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
