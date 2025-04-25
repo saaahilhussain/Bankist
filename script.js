@@ -129,17 +129,22 @@ btnLogin.addEventListener('click', function (e) {
     console.log('id-pin matched');
     //Display Welcome Message & UI
     labelWelcome.textContent = `Welcome, ${currentAccount.owner.split(' ')[0]}`;
-
     containerApp.style.opacity = 100;
+
+    //clear input fields
+    inputLoginUsername.value = inputLoginPin.value = '';
+    inputLoginUsername.blur();
+    inputLoginPin.blur();
+
+    //Display Movements
+    displayMovements(currentAccount.movements);
+
+    //Display Balance
+    calcDisplayBalance(currentAccount.movements);
+
+    //Display Summary
+    calcDisplaySummary(currentAccount.movements);
   }
-  //Display Movements
-  displayMovements(currentAccount.movements);
-
-  //Display Balance
-  calcDisplayBalance(currentAccount.movements);
-
-  //Display Summary
-  calcDisplaySummary(currentAccount.movements);
 });
 
 /////////////////////////////////////////////////
