@@ -79,28 +79,28 @@ const displayMovements = function (movements) {
 
 const calcDisplayBalance = function (movements) {
   const balance = movements.reduce((acc, mov) => acc + mov, 0);
-  labelBalance.textContent = `${balance} EUR`;
+  labelBalance.textContent = `${balance} €`;
 };
 
-const calcDisplaySummary = function (movements) {
-  const incomes = movements
+const calcDisplaySummary = function (acc) {
+  const incomes = acc.movements
     .filter(mov => mov > 0)
     .reduce((acc, mov) => acc + mov, 0);
 
-  labelSumIn.textContent = `${incomes}e`;
+  labelSumIn.textContent = `${incomes}€`;
 
-  const out = movements
+  const out = acc.movements
     .filter(mov => mov < 0)
     .reduce((acc, curr) => acc + curr, 0);
 
-  labelSumOut.textContent = `${Math.abs(out)}eur`;
+  labelSumOut.textContent = `${Math.abs(out)}€`;
 
-  const interest = movements
+  const interest = acc.movements
     .filter(mov => mov > 0)
-    .map(depost => (depost * 1.2) / 100)
+    .map(depost => (depost * acc.interestRate) / 100)
     .filter(int => int >= 1)
     .reduce((acc, int) => acc + int, 0);
-  labelSumInterest.textContent = `${interest}e`;
+  labelSumInterest.textContent = `${interest}€`;
 };
 
 const createUsernames = function (accs) {
@@ -143,7 +143,7 @@ btnLogin.addEventListener('click', function (e) {
     calcDisplayBalance(currentAccount.movements);
 
     //Display Summary
-    calcDisplaySummary(currentAccount.movements);
+    calcDisplaySummary(currentAccount);
   }
 });
 
@@ -153,7 +153,7 @@ btnLogin.addEventListener('click', function (e) {
 
 const currencies = new Map([
   ['USD', 'United States dollar'],
-  ['EUR', 'Euro'],
+  ['€', '€o'],
   ['GBP', 'Pound sterling'],
 ]);
 
