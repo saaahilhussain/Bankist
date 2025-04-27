@@ -159,7 +159,11 @@ btnTransfer.addEventListener('click', function (e) {
   const receiverAcc = accounts.find(
     acc => acc.username === inputTransferTo.value
   );
-  console.log(amount, receiverAcc);
+  // console.log(amount, receiverAcc); check
+
+  //clear Input fields again
+  inputTransferAmount.value = inputTransferTo.value = '';
+  inputTransferAmount.blur();
 
   if (
     amount > 0 &&
@@ -167,7 +171,12 @@ btnTransfer.addEventListener('click', function (e) {
     receiverAcc.username !== currentAccount.username &&
     currentAccount.balance >= amount
   ) {
-    console.log('Transer Valid');
+    //implement transfer
+    currentAccount.movements.push(-amount);
+    receiverAcc.movements.push(amount);
+
+    //update UI after transfer
+    updateUI(currentAccount);
   } else console.log('invalid');
 });
 
