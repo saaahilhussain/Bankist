@@ -145,6 +145,22 @@ const updateUI = function (acc) {
   calcDisplaySummary(acc);
 };
 
+//Fake Logged in
+currentAccount = account1;
+updateUI(currentAccount);
+containerApp.style.opacity = 100;
+
+const now = new Date();
+
+const day = `${now.getDate()}`.padStart(2, 0);
+const month = `${now.getMonth() + 1}`.padStart(2, 0);
+const year = now.getFullYear();
+const hour = now.getHours();
+const mins = now.getMinutes();
+
+// DD/MM/YYYY Format
+labelDate.textContent = `${day}/${month}/${year}, ${hour}:${mins}`;
+
 btnLogin.addEventListener('click', function (e) {
   e.preventDefault();
   console.log('log in btn pressed');
