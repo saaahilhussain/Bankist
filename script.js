@@ -25,7 +25,7 @@ const account1 = {
     '2020-07-12T10:51:36.790Z',
   ],
   currency: 'EUR',
-  locale: 'pt-PT', // de-DE
+  locale: 'hi-IN',
 };
 
 const account2 = {
@@ -187,6 +187,8 @@ currentAccount = account1;
 updateUI(currentAccount);
 containerApp.style.opacity = 100;
 
+//Experimenting API
+
 btnLogin.addEventListener('click', function (e) {
   e.preventDefault();
   console.log('log in btn pressed');
@@ -203,14 +205,24 @@ btnLogin.addEventListener('click', function (e) {
 
     //Current Date and Time
     const now = new Date();
-    const day = `${now.getDate()}`.padStart(2, 0);
-    const month = `${now.getMonth() + 1}`.padStart(2, 0);
-    const year = now.getFullYear();
-    const hour = `${now.getHours()}`.padStart(2, 0);
-    const mins = `${now.getMinutes()}`.padStart(2, 0);
+    const options = {
+      hour: 'numeric',
+      minute: 'numeric',
+      day: 'numeric',
+      month: 'numeric',
+      year: 'numeric',
+      // weekday: 'long',
+    };
+    const locale = navigator.language;
+    // console.log(locale);
 
-    // DD/MM/YYYY Format
-    labelDate.textContent = `${day}/${month}/${year}, ${hour}:${mins}`;
+    labelDate.textContent = new Intl.DateTimeFormat(
+      currentAccount.locale,
+      options
+    ).format(now);
+
+    // // DD/MM/YYYY Format
+    // labelDate.textContent = `${day}/${month}/${year}, ${hour}:${mins}`;
 
     //clear input fields
     inputLoginUsername.value = inputLoginPin.value = '';
