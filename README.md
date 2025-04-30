@@ -2,6 +2,10 @@
 
 A minimalist banking web application built with **vanilla JavaScript** to simulate real-world banking operations and demonstrate advanced JavaScript concepts. This is a frontend-only project designed for educational and demonstration purposes.
 
+> I built this project while following  
+> [Jonas Schmedtmann's course: _The Complete JavaScript Course 2023: From Zero to Expert!_](https://www.udemy.com/course/the-complete-javascript-course/) on Udemy.  
+> All credit for the original project idea, design, and core functionality goes to Jonas Schmedtmann. This version was created as part of my learning journey through the course.
+
 ## Features
 
 - User login/logout functionality
